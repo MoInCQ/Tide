@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFF</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <!--透明色-->
+    <color name="transparency">#00000000</color>
+
+
+    <!--底部导航栏-->
+    <color name="colorTab">#38000000</color>
+    <color name="colorTabFill">#88000000</color>
+
+    <!--黑白灰-->
+    <color name="title">#88000000</color>
+    <color name="subTitle">#60000000</color>
+    <color name="greyText">#38000000</color>
+    <color name="division">#05000000</color>
+
+    <color name="test">#f1f6f9 </color>
+
+    <!--图标色号-->
+    <color name="icTitle">#707070</color>
+    <color name="icGreyText">#bfbfbf</color>
+
+
+</resources>

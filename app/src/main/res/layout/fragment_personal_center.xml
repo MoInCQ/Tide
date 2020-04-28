@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_personal_center"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="个人中心 Personal Center"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tb_personal_center">
+
+        <!--头像栏-->
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/iv_personal_center_head_blur"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/img_recommend"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="16dp"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_personal_center_head_portrait"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"/>
+
+            <!--选项-->
+            <!--个人资料-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_account"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/iv_personal_center_head_blur">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_account"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_account_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="个人资料"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_account"
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+            <!--收藏-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_collect"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_personal_center_account">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_collect"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_collect_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="收藏"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_collect"
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+            <!--会员码-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_qrcode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_personal_center_collect">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_qrcode"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_qrcode_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="会员码"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_qrcode" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+            <!--足迹-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_footprint"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_personal_center_qrcode">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_footprint"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_footprint_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="14dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="足迹"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_footprint" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view_personal_center_option_division"
+                android:layout_width="260dp"
+                android:layout_height="1dp"
+                android:background="@color/greyText"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:layout_below="@+id/rl_personal_center_footprint"/>
+
+
+            <!--设置-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_set"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/view_personal_center_option_division">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_set"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_set_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="设置"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_set" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+            <!--退出登陆-->
+            <RelativeLayout
+                android:id="@+id/rl_personal_center_logout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_personal_center_set">
+
+                <ImageView
+                    android:id="@+id/iv_personal_center_ic_logout"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_switch_title"
+                    android:layout_marginStart="6dp"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/title"
+                    android:textSize="16sp"
+                    android:text="退出登陆"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/iv_personal_center_ic_logout" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:src="@drawable/ic_enter_title"
+                    android:padding="12dp" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

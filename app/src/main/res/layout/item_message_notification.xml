@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="12dp">
+
+        <ImageView
+            android:id="@+id/iv_message_notification_item_cover"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/img_recommend"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/tv_message_notification_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/title"
+            android:textSize="16sp"
+            android:text="《霍乱时期的爱情》｜ 读书分享"
+            android:maxLength="16"
+            android:ellipsize="end"/>
+
+        <!--时间-->
+        <ImageView
+            android:id="@+id/iv_message_notification_item_ic_calendar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/tv_message_notification_item_title"
+            android:src="@drawable/ic_calendar"/>
+
+        <TextView
+            android:id="@+id/tv_message_notification_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/iv_message_notification_item_ic_calendar"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="3dp"
+            android:layout_below="@+id/tv_message_notification_item_title"
+            android:textSize="14sp"
+            android:textColor="@color/greyText"
+            android:text="2020.02.02 晚"
+            android:maxLength="14"/>
+
+         <!--状态-->
+        <ImageView
+            android:id="@+id/iv_message_notification_item_status"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@+id/iv_message_notification_item_cover"
+            android:layout_below="@+id/tv_message_notification_item_title"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_notread"/>
+
+        <!--地点-->
+        <ImageView
+            android:id="@+id/iv_message_notification_item_ic_location"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_below="@+id/iv_message_notification_item_ic_calendar"
+            android:src="@drawable/ic_loaction_greytext"
+            />
+
+        <TextView
+            android:id="@+id/tv_message_notification_item_address"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/iv_message_notification_item_ic_location"
+            android:layout_marginStart="3dp"
+            android:layout_below="@+id/tv_message_notification_item_time"
+            android:textSize="14sp"
+            android:textColor="@color/greyText"
+            android:text="南京市玄武区中山陵3号永丰社"
+            android:maxLength="14"/>
+
+        <!--人数-->
+        <ImageView
+            android:id="@+id/iv_message_notification_item_ic_population"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_below="@+id/iv_message_notification_item_ic_location"
+            android:src="@drawable/ic_population_greytext"
+            />
+
+        <TextView
+            android:id="@+id/tv_message_notification_item_population"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/iv_message_notification_item_ic_population"
+            android:layout_marginStart="3dp"
+            android:layout_below="@+id/tv_message_notification_item_address"
+            android:textSize="14sp"
+            android:textColor="@color/greyText"
+            android:text="21 / 30"
+            android:maxLength="10"/>
+
+        <!--费用-->
+        <ImageView
+            android:id="@+id/iv_message_notification_item_ic_fee"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_marginStart="12dp"
+            android:layout_below="@+id/iv_message_notification_item_ic_location"
+            android:layout_toRightOf="@+id/tv_message_notification_item_population"
+            android:src="@drawable/ic_fee_greytext"
+            />
+
+        <TextView
+            android:id="@+id/tv_message_notification_item_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/iv_message_notification_item_ic_fee"
+
+            android:layout_below="@+id/tv_message_notification_item_address"
+            android:textSize="14sp"
+            android:textColor="@color/greyText"
+            android:text="30 元/人"
+            android:maxLength="14"/>
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
