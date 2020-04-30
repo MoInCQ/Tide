@@ -45,7 +45,7 @@ public class ExploreFragment extends BaseFragment<IExploreFragmentView, ExploreF
      */
     @Override
     public void initClassifyList(final List<Classify> classifies) {
-        exploreClassifyAdapter = new ExploreClassifyAdapter(classifies);
+        exploreClassifyAdapter = new ExploreClassifyAdapter(getContext(), classifies);
         exploreClassifyAdapter.setOnSelectClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {

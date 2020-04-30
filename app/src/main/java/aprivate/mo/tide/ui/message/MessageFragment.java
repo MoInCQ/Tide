@@ -38,7 +38,7 @@ public class MessageFragment extends BaseFragment<IMessageFragmentView, MessageF
      */
     @Override
     public void initNotificationList(List<Event> events) {
-        messageNotificationAdapter = new MessageNotificationAdapter(events);
+        messageNotificationAdapter = new MessageNotificationAdapter(getContext(), events);
         messageNotificationLayoutManager = new LinearLayoutManager(getContext());
         messageNotificationLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvNotification.setAdapter(messageNotificationAdapter);

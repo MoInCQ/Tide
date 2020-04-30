@@ -9,6 +9,9 @@ import android.widget.Button;
 import aprivate.mo.tide.R;
 
 import aprivate.mo.tide.ui.MainActivity;
+import com.jakewharton.rxbinding2.view.RxView;
+import io.reactivex.functions.Consumer;
+import java.util.concurrent.TimeUnit;
 import privat.mo.tidelib.base.BaseActivity;
 
 public class LoginActivity extends BaseActivity<ILoginActivityView, LoginActivityPresenter> implements ILoginActivityView {
@@ -20,13 +23,15 @@ public class LoginActivity extends BaseActivity<ILoginActivityView, LoginActivit
         super.onCreate(savedInstanceState);
 
         btnLogin = (Button) findViewById(R.id.btn_login_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentToHome = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intentToHome);
-            }
-        });
+        RxView.clicks(btnLogin)
+            .throttleFirst(3, TimeUnit.SECONDS)
+            .subscribe(new Consumer<Object>() {
+                @Override
+                public void accept(Object o) throws Exception {
+                    Intent intentToHome = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intentToHome);
+                }
+            });
 
     }
 

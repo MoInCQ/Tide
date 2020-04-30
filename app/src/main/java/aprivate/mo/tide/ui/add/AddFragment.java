@@ -35,7 +35,6 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
         abl.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-                Log.e("sss" , "偏移量" + i);
                 if (i < TOOLBAR_HEIGHT_OFFSET) {
                     tvTitle.setTextColor(Color.BLACK);
                 } else {

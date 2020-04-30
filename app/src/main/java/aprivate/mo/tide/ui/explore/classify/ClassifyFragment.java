@@ -98,7 +98,7 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
     public void initStoreList(List<Store> storeList) {
         classifyStoreLayoutManager = new LinearLayoutManager(getContext());
         classifyStoreLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        classifyStoreAdapter = new ClassifyStoreAdapter(storeList);
+        classifyStoreAdapter = new ClassifyStoreAdapter(getContext(), storeList);
         rvStore.setLayoutManager(classifyStoreLayoutManager);
         rvStore.setAdapter(classifyStoreAdapter);
     }
@@ -113,7 +113,7 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
     public void initEventList(List<Event> eventList) {
         classifyEventLayoutManager = new LinearLayoutManager(getContext());
         classifyEventLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        classifyEventAdapter = new ClassifyEventAdapter(eventList);
+        classifyEventAdapter = new ClassifyEventAdapter(getContext(), eventList);
         rvEvent.setLayoutManager(classifyEventLayoutManager);
         rvEvent.setAdapter(classifyEventAdapter);
     }

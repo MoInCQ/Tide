@@ -77,7 +77,7 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
     public void initHomeRecommendInfo(List<Event> homeRecommendList) {
         homeRecommendLayoutManager = new LinearLayoutManager(getContext());
         homeRecommendLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        homeRecommendAdapter = new HomeRecommendAdapter(homeRecommendList);
+        homeRecommendAdapter = new HomeRecommendAdapter(getContext(), homeRecommendList);
         rvHomeRecommend.setLayoutManager(homeRecommendLayoutManager);
         rvHomeRecommend.setAdapter(homeRecommendAdapter);
     }
@@ -92,7 +92,7 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
     public void initHomeSelectedStoreInfo(List<Store> homeSelectedStoreList) {
         homeSelectedStoreLayoutManager = new LinearLayoutManager(getContext());
         homeSelectedStoreLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        homeSelectedStoreAdpter = new HomeSelectedStoreAdpter(homeSelectedStoreList);
+        homeSelectedStoreAdpter = new HomeSelectedStoreAdpter(getContext(), homeSelectedStoreList);
         rvHomeSelectedStore.setLayoutManager(homeSelectedStoreLayoutManager);
         rvHomeSelectedStore.setAdapter(homeSelectedStoreAdpter);
     }
@@ -106,7 +106,7 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
     public void initHomeCityMapInfo(List<Event> homeCityMapList) {
         homeCityMapLayoutManager = new LinearLayoutManager(getContext());
         homeCityMapLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        homeCityMapAdapter = new HomeCityMapAdapter(homeCityMapList);
+        homeCityMapAdapter = new HomeCityMapAdapter(getContext(), homeCityMapList);
         rvHomeCityMap.setLayoutManager(homeCityMapLayoutManager);
         rvHomeCityMap.setAdapter(homeCityMapAdapter);
     }

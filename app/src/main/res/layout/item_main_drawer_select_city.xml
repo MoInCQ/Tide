@@ -11,7 +11,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/img_city"/>
+      />
 
     <TextView
         android:id="@+id/tv_drawer_main_rv_select_city_name"
