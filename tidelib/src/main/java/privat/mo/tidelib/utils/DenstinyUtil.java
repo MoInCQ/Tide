@@ -1,4 +1,4 @@
-package privat.mo.tidelib.Utils;
+package privat.mo.tidelib.utils;
 
 import android.content.res.Resources;
 import android.util.TypedValue;

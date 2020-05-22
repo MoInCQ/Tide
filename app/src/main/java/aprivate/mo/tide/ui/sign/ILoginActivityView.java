@@ -1,5 +1,6 @@
 package aprivate.mo.tide.ui.sign;
 
+import aprivate.mo.tide.bean.TideUser;
 import privat.mo.tidelib.mvp.BaseView;
 
 /**
@@ -7,4 +8,7 @@ import privat.mo.tidelib.mvp.BaseView;
  */
 
 public interface ILoginActivityView extends BaseView {
+    void loginSuccess(TideUser user);
+    void loginFail();
+
 }
