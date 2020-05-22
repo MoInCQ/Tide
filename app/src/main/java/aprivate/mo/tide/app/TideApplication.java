@@ -3,7 +3,7 @@ package aprivate.mo.tide.app;
 import android.app.Application;
 import android.content.Context;
 
-import me.yokeyword.fragmentation.BuildConfig;
+import cn.bmob.v3.Bmob;
 import me.yokeyword.fragmentation.Fragmentation;
 import me.yokeyword.fragmentation.helper.ExceptionHandler;
 
@@ -35,6 +35,8 @@ public class TideApplication extends Application{
                 })
                 .install();
 
+        // 初始化Bomb
+        Bmob.initialize(this, "c5280556bfc6ccbe7a0bb08cf99adaf9");
     }
 
     /**
