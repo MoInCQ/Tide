@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import aprivate.mo.tide.R;
@@ -14,6 +16,7 @@ import aprivate.mo.tide.entity.Store;
 import aprivate.mo.tide.adapter.HomeCityMapAdapter;
 import aprivate.mo.tide.adapter.HomeRecommendAdapter;
 import aprivate.mo.tide.adapter.HomeSelectedStoreAdpter;
+import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.base.BaseFragment;
 
 /**
@@ -53,12 +56,6 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
 
     @Override
     protected void initData() {
-        getPresenter().getHomeCitySelected();
-
-        // 列表相关
-        getPresenter().getHomeRecommendList();
-        getPresenter().getHomeSelectedStoreList();
-        getPresenter().getHomeCityMapList();
     }
 
     @Override
@@ -76,13 +73,28 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
     }
 
     /**
-     * 初始化选中城市
+     * 获取选中城市更新(通过MainActivity的getCitySelected控制)
      *
      * @param city
      */
+
+    @Subscribe(sticky = true)
+    public void onUpdateCitySelected(City city) {
+
+        tvHomeCitySelected.setText(city.getName());
+
+        // 城市显示
+        getPresenter().getHomeCitySelected();
+        // 列表相关
+        getPresenter().getHomeRecommendList();
+        getPresenter().getHomeSelectedStoreList();
+        getPresenter().getHomeCityMapList();
+
+    }
+
     @Override
     public void initHomeCitySelected(City city) {
-        tvHomeCitySelected.setText(city.getName());
+        // TODO: 2020/6/4 选中城市后页面逻辑变化
     }
 
     /**

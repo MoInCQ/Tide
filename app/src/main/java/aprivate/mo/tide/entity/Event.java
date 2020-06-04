@@ -1,17 +1,19 @@
 package aprivate.mo.tide.entity;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by Mo on 2020/3/10
  *
  * 事件实体(作为所有事件的父类 eg：推荐活动、文章、店铺)
  */
 
-public class Event {
+public class Event extends BmobObject {
 
     private String title;
     private String tag;
     private String subTitle;
-    private String coverImg;
+    private String coverImgUrl;
     private String intro;
 
     private String address;
@@ -111,11 +113,11 @@ public class Event {
         this.registerdPopulation = registerdPopulation;
     }
 
-    public String getCoverImg() {
-        return coverImg;
+    public String getCoverImgUrl() {
+        return coverImgUrl;
     }
 
-    public void setCoverImg(String coverImg) {
-        this.coverImg = coverImg;
+    public void setCoverImgUrl(String coverImgUrl) {
+        this.coverImgUrl = coverImgUrl;
     }
 }

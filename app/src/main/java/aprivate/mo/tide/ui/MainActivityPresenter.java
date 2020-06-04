@@ -1,11 +1,13 @@
 package aprivate.mo.tide.ui;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import aprivate.mo.tide.entity.City;
+import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.mvp.BasePresenter;
 
 /**
@@ -68,7 +70,7 @@ public class MainActivityPresenter extends BasePresenter<IMainActivityView> {
     public void updateCitySelected(int citySelectedsIndex) {
         // TODO: 2020/6/2 完成更换城市-->更换内容逻辑
         City citySelected = cities.get(citySelectedsIndex);
-        EventBus.getDefault().post(citySelected);
+        EventBus.getDefault().postSticky(citySelected);
         getView().updateCitySelected(citySelected);
     }
 
@@ -78,8 +80,10 @@ public class MainActivityPresenter extends BasePresenter<IMainActivityView> {
     public void getCitySelected() {
         // TODO: 2020/6/2 接入数据库，与homeFragment统一
         City citySelected = cities.get(4);
-        EventBus.getDefault().post(citySelected);
+        EventBus.getDefault().postSticky(citySelected);
         getView().initCitySelected(citySelected);
     }
+
+
 
 }

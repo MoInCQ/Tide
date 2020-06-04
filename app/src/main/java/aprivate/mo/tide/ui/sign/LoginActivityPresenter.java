@@ -25,7 +25,7 @@ public class LoginActivityPresenter extends BasePresenter<ILoginActivityView> {
             return;
         }
 
-        // 组合查询条件
+        // 组合查询条件(账号+密码)
         List<BmobQuery<TideUser>> andQuerys = new ArrayList<BmobQuery<TideUser>>();
         BmobQuery<TideUser> accountQuery = new BmobQuery<>();
         accountQuery.addWhereEqualTo("account", account);

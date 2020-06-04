@@ -1,6 +1,7 @@
 package aprivate.mo.tide.ui.personalcenter;
 
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import aprivate.mo.tide.R;
 import privat.mo.tidelib.base.BaseFragment;
@@ -11,6 +12,8 @@ import privat.mo.tidelib.base.BaseFragment;
 
 public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragmentView, PersonalFragmentPresenter>
         implements IPersonalCenterFragmentView {
+
+    private RelativeLayout rlLogout;
 
     @Override
     protected int getLayoutResId() {
@@ -29,7 +32,13 @@ public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragment
 
     @Override
     protected void initView(View view) {
-
+        rlLogout = (RelativeLayout) view.findViewById(R.id.rl_personal_center_logout);
+        rlLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
 
     @Override

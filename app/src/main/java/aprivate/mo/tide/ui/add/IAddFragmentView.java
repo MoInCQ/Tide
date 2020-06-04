@@ -8,4 +8,8 @@ import privat.mo.tidelib.mvp.BaseView;
 
 public interface IAddFragmentView extends BaseView {
 
+    void submitEventSuccess();
+
+    void submitEventFail();
+
 }

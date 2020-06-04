@@ -40,7 +40,7 @@
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="aprivate.mo.tide.provider.BmobContentProvider">
+            android:authorities="aprivate.mo.tide.BmobContentProvider">
         </provider>
     </application>
 

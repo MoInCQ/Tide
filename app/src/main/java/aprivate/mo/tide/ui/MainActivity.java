@@ -109,6 +109,8 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
     }
   }
 
+
+
   /**
    * 侧边栏相关
    *

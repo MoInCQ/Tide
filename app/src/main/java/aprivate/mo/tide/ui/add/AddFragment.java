@@ -2,35 +2,49 @@ package aprivate.mo.tide.ui.add;
 
 import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import aprivate.mo.tide.R;
-import aprivate.mo.tide.entity.Person;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+import aprivate.mo.tide.entity.Event;
+import aprivate.mo.tide.utils.TideMessage;
+import io.reactivex.functions.Consumer;
 import privat.mo.tidelib.base.BaseFragment;
 
 /**
  * Created by Mo on 2020/1/27
  */
-
 public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPresenter>
         implements IAddFragmentView {
 
+
+    private EditText etTitle;
+    private EditText etTime;
+    private EditText etAddress;
+    private EditText etSupposedPopulation;
+    private EditText etTag;
+    private EditText etFares;
+    private EditText etIntro;
 
     private AppBarLayout abl;
     private TextView tvTitle;
     private Button btnAdd;
     private static final int TOOLBAR_HEIGHT_OFFSET = -450;
 
+    private Event event;
+
 
 
     @Override
     protected void initData() {
-
+        event = new Event();
     }
 
     @Override
@@ -38,26 +52,34 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
         abl = (AppBarLayout) view.findViewById(R.id.abl_add);
         tvTitle = (TextView) view.findViewById(R.id.tv_add_title);
         btnAdd = (Button) view.findViewById(R.id.btn_add_form_submit);
+        etTitle = (EditText) view.findViewById(R.id.et_add_form_title);
+        etTime = (EditText) view.findViewById(R.id.et_add_form_time);
+        etAddress = (EditText) view.findViewById(R.id.et_add_form_address);
+        etSupposedPopulation = (EditText) view.findViewById(R.id.et_add_form_population);
+        etTag = (EditText) view.findViewById(R.id.et_add_form_tag);
+        etFares = (EditText) view.findViewById(R.id.et_add_form_fee);
+        etIntro = (EditText) view.findViewById(R.id.et_add_form_intro);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: 2020/5/22 测试代码 
-                Person p2 = new Person();
-                p2.setName("lucky");
-                p2.setAddress("北京海淀");
-                p2.save(new SaveListener<String>() {
+        RxView.clicks(btnAdd)
+                .throttleFirst(3, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
                     @Override
-                    public void done(String objectId,BmobException e) {
-                        if(e==null){
-                            Toast.makeText(getContext(), "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getContext(), "创建数据失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void accept(Object o) throws Exception {
+                        if (event == null) {
+                            return;
                         }
+                        event.setTitle(etTitle.getText().toString());
+                        event.setTime(etTime.getText().toString());
+                        event.setAddress(etAddress.getText().toString());
+                        event.setSupposedPopulation(TextUtils.isEmpty(etSupposedPopulation.getText().toString())
+                                ? 0 : Integer.parseInt(etSupposedPopulation.getText().toString()));
+                        event.setTag(etTag.getText().toString());
+                        event.setFares(TextUtils.isEmpty(etFares.getText().toString())
+                                ? 0 : Integer.parseInt(etFares.getText().toString()));
+                        event.setIntro(etIntro.getText().toString());
+                        getPresenter().submitEvent(event);
                     }
                 });
-            }
-        });
 
         abl.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -71,6 +93,24 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
         });
 
 
+    }
+
+    // 提交活动成功或失败
+    @Override
+    public void submitEventSuccess() {
+        etTitle.setText("");
+        etTime.setText("");
+        etAddress.setText("");
+        etSupposedPopulation.setText("");
+        etTag.setText("");
+        etFares.setText("");
+        etIntro.setText("");
+        TideMessage.showMessage("提交活动成功");
+    }
+
+    @Override
+    public void submitEventFail() {
+        TideMessage.showMessage("提交活动失败，请核对活动信息");
     }
 
     @Override

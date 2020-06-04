@@ -38,13 +38,6 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragmentView> {
         getView().initHomeCitySelected(mCitySelected);
     }
 
-    @Subscribe
-    public void onUpdateCitySelected(City city) {
-        mCitySelected = city;
-        TideMessage.showMessage(city.getName());
-    }
-
-
 
     /**
      * 获取首页 "推荐" 相关列表
