@@ -13,17 +13,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import aprivate.mo.tide.R;
-import aprivate.mo.tide.entity.CitySelected;
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.ui.add.root.AddRootFragment;
 import aprivate.mo.tide.ui.explore.root.ExploreRootFragment;
 import aprivate.mo.tide.adapter.DrawerSelectCityAdapter;
 import aprivate.mo.tide.ui.home.root.HomeRootFragment;
 import aprivate.mo.tide.ui.message.root.MessageRootFragment;
 import aprivate.mo.tide.ui.personalcenter.root.PersonalCenterRootFragment;
+import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.base.BaseActivity;
 import privat.mo.tidelib.base.BaseFragment;
 
@@ -79,6 +83,7 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
     ivDrawerBack = (ImageView) findViewById(R.id.iv_drawer_main_back);
     ivDrawerBack.setOnClickListener(this);
 
+
     fragmentList.add(HomeRootFragment.newInstance());
     fragmentList.add(ExploreRootFragment.newInstance());
     fragmentList.add(AddRootFragment.newInstance());
@@ -92,6 +97,7 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
 
     //侧边栏
     getPresenter().getCitySelectedList();
+    getPresenter().getCitySelected();
   }
 
   @Override
@@ -106,13 +112,13 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
   /**
    * 侧边栏相关
    *
-   * @param citySelectedList
+   * @param cityList
    */
   @Override
-  public void initCitySelectInfo(final List<CitySelected> citySelectedList) {
+  public void initCitySelectInfo(final List<City> cityList) {
     citySelectedLayoutManager = new GridLayoutManager(MainActivity.this, 3,
         OrientationHelper.VERTICAL, false);
-    citySelectedAdapter = new DrawerSelectCityAdapter(this, citySelectedList);
+    citySelectedAdapter = new DrawerSelectCityAdapter(this, cityList);
     citySelectedAdapter
         .setOnItemClickListener(new DrawerSelectCityAdapter.OnCitySelectedClickListener() {
           @Override
@@ -122,7 +128,7 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
 
           @Override
           public void onItemLongClick(View view, int position) {
-            Toast.makeText(MainActivity.this, "长按  " + citySelectedList.get(position).getName(),
+            Toast.makeText(MainActivity.this, "长按  " + cityList.get(position).getName(),
                 Toast.LENGTH_SHORT).show();
           }
         });
@@ -132,10 +138,20 @@ public class MainActivity extends BaseActivity<IMainActivityView, MainActivityPr
   }
 
   @Override
-  public void updateCitySelected(CitySelected citySelected) {
-    // TODO: 2020/3/10 完成重选城市逻辑
-    tvDrawerCitySelected.setText(citySelected.getName() + " / " + citySelected.getEnglishName());
+  public void updateCitySelected(City city) {
+    tvDrawerCitySelected.setText(city.getName() + " / " + city.getEnglishName());
   }
+
+  /**
+   * 初始化选中城市信息
+   *
+   * @param city
+   */
+  @Override
+  public void initCitySelected(City city) {
+    tvDrawerCitySelected.setText(city.getName() + " / " + city.getEnglishName());
+  }
+
 
   /**
    * 底部栏切换相关

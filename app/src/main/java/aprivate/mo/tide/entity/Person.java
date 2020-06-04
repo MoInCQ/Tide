@@ -1,4 +1,4 @@
-package aprivate.mo.tide.bean;
+package aprivate.mo.tide.entity;
 
 import cn.bmob.v3.BmobObject;
 

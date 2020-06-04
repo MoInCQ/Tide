@@ -1,9 +1,11 @@
 package aprivate.mo.tide.ui;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import aprivate.mo.tide.entity.CitySelected;
+import aprivate.mo.tide.entity.City;
 import privat.mo.tidelib.mvp.BasePresenter;
 
 /**
@@ -12,49 +14,49 @@ import privat.mo.tidelib.mvp.BasePresenter;
 
 public class MainActivityPresenter extends BasePresenter<IMainActivityView> {
 
-    private List<CitySelected> citySelecteds = new ArrayList<>();
+    private List<City> cities = new ArrayList<>();
 
     /**
      * 获取城市列表
      */
     public void getCitySelectedList() {
 
-        CitySelected citySelected = new CitySelected();
-        citySelected.setName("上海");
-        citySelected.setEnglishName("Shanghai");
-        citySelecteds.add(citySelected);
+        City city = new City();
+        city.setName("上海");
+        city.setEnglishName("Shanghai");
+        cities.add(city);
 
-        CitySelected citySelected1 = new CitySelected();
-        citySelected1.setName("北京");
-        citySelected1.setEnglishName("Beijing");
-        citySelecteds.add(citySelected1);
+        City city1 = new City();
+        city1.setName("北京");
+        city1.setEnglishName("Beijing");
+        cities.add(city1);
 
-        CitySelected citySelected2 = new CitySelected();
-        citySelected2.setName("深圳");
-        citySelected2.setEnglishName("Shenzhen");
-        citySelecteds.add(citySelected2);
+        City city2 = new City();
+        city2.setName("深圳");
+        city2.setEnglishName("Shenzhen");
+        cities.add(city2);
 
-        CitySelected citySelected3 = new CitySelected();
-        citySelected3.setName("广州");
-        citySelected3.setEnglishName("Guangzhou");
-        citySelecteds.add(citySelected3);
+        City city3 = new City();
+        city3.setName("广州");
+        city3.setEnglishName("Guangzhou");
+        cities.add(city3);
 
-        CitySelected citySelected4 = new CitySelected();
-        citySelected4.setName("南京");
-        citySelected4.setEnglishName("Nanjing");
-        citySelecteds.add(citySelected4);
+        City city4 = new City();
+        city4.setName("南京");
+        city4.setEnglishName("Nanjing");
+        cities.add(city4);
 
-        CitySelected citySelected5 = new CitySelected();
-        citySelected5.setName("苏州");
-        citySelected5.setEnglishName("Suzhou");
-        citySelecteds.add(citySelected5);
+        City city5 = new City();
+        city5.setName("苏州");
+        city5.setEnglishName("Suzhou");
+        cities.add(city5);
 
-        CitySelected citySelected6 = new CitySelected();
-        citySelected6.setName("杭州");
-        citySelected6.setEnglishName("Hangzhou");
-        citySelecteds.add(citySelected6);
+        City city6 = new City();
+        city6.setName("杭州");
+        city6.setEnglishName("Hangzhou");
+        cities.add(city6);
 
-        getView().initCitySelectInfo(citySelecteds);
+        getView().initCitySelectInfo(cities);
     }
 
 
@@ -64,7 +66,20 @@ public class MainActivityPresenter extends BasePresenter<IMainActivityView> {
      * @param citySelectedsIndex
      */
     public void updateCitySelected(int citySelectedsIndex) {
-        getView().updateCitySelected(citySelecteds.get(citySelectedsIndex));
+        // TODO: 2020/6/2 完成更换城市-->更换内容逻辑
+        City citySelected = cities.get(citySelectedsIndex);
+        EventBus.getDefault().post(citySelected);
+        getView().updateCitySelected(citySelected);
+    }
+
+    /**
+     * 获取选中城市信息
+     */
+    public void getCitySelected() {
+        // TODO: 2020/6/2 接入数据库，与homeFragment统一
+        City citySelected = cities.get(4);
+        EventBus.getDefault().post(citySelected);
+        getView().initCitySelected(citySelected);
     }
 
 }

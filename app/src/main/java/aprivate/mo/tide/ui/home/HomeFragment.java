@@ -3,10 +3,12 @@ package aprivate.mo.tide.ui.home;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
 import aprivate.mo.tide.R;
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
 import aprivate.mo.tide.adapter.HomeCityMapAdapter;
@@ -22,6 +24,8 @@ import privat.mo.tidelib.base.BaseFragment;
 
 public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPresenter>
         implements IHomeFragmentView {
+
+    private TextView tvHomeCitySelected;
 
     /**
      * 推荐相关
@@ -49,6 +53,9 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
 
     @Override
     protected void initData() {
+        getPresenter().getHomeCitySelected();
+
+        // 列表相关
         getPresenter().getHomeRecommendList();
         getPresenter().getHomeSelectedStoreList();
         getPresenter().getHomeCityMapList();
@@ -56,6 +63,7 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
 
     @Override
     protected void initView(View view) {
+        tvHomeCitySelected = (TextView) view.findViewById(R.id.tv_home_city_selected);
 
         //推荐相关
         rvHomeRecommend = (RecyclerView) view.findViewById(R.id.rv_home_recommend);
@@ -67,6 +75,15 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
         rvHomeCityMap = (RecyclerView) view.findViewById(R.id.rv_home_city_map);
     }
 
+    /**
+     * 初始化选中城市
+     *
+     * @param city
+     */
+    @Override
+    public void initHomeCitySelected(City city) {
+        tvHomeCitySelected.setText(city.getName());
+    }
 
     /**
      * 推荐相关

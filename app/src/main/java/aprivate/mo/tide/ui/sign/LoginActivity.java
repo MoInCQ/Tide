@@ -13,18 +13,13 @@ import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import aprivate.mo.tide.R;
-import aprivate.mo.tide.bean.TideUser;
-import aprivate.mo.tide.provider.BombContentProvider;
+import aprivate.mo.tide.entity.TideUser;
 import aprivate.mo.tide.ui.MainActivity;
 import aprivate.mo.tide.utils.TideMessage;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import io.reactivex.functions.Consumer;
 import privat.mo.tidelib.base.BaseActivity;
@@ -49,7 +44,7 @@ public class LoginActivity extends BaseActivity<ILoginActivityView, LoginActivit
 
         // 登陆
         RxView.clicks(btnLogin)
-                .throttleFirst(5, TimeUnit.SECONDS)
+                .throttleFirst(3, TimeUnit.SECONDS)
                 .subscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {

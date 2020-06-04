@@ -2,6 +2,7 @@ package aprivate.mo.tide.ui.home;
 
 import java.util.List;
 
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
 import privat.mo.tidelib.mvp.BaseView;
@@ -11,6 +12,8 @@ import privat.mo.tidelib.mvp.BaseView;
  */
 
 public interface IHomeFragmentView extends BaseView {
+
+    void initHomeCitySelected(City city);
 
     void initHomeRecommendInfo(List<Event> homeRecommendList);
 

@@ -2,7 +2,7 @@ package aprivate.mo.tide.ui;
 
 import java.util.List;
 
-import aprivate.mo.tide.entity.CitySelected;
+import aprivate.mo.tide.entity.City;
 import privat.mo.tidelib.mvp.BaseView;
 
 /**
@@ -11,7 +11,9 @@ import privat.mo.tidelib.mvp.BaseView;
 
 public interface IMainActivityView extends BaseView {
 
-    void initCitySelectInfo(List<CitySelected> citySelectedList);
+    void initCitySelectInfo(List<City> cityList);
 
-    void updateCitySelected(CitySelected citySelected);
+    void updateCitySelected(City city);
+
+    void initCitySelected(City city);
 }

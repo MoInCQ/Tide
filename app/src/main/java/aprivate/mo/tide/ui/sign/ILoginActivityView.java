@@ -1,6 +1,6 @@
 package aprivate.mo.tide.ui.sign;
 
-import aprivate.mo.tide.bean.TideUser;
+import aprivate.mo.tide.entity.TideUser;
 import privat.mo.tidelib.mvp.BaseView;
 
 /**

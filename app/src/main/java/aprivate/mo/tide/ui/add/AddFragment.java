@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import aprivate.mo.tide.R;
-import aprivate.mo.tide.bean.Person;
+import aprivate.mo.tide.entity.Person;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import privat.mo.tidelib.base.BaseFragment;

@@ -1,10 +1,16 @@
 package aprivate.mo.tide.ui.home;
 
+import android.widget.Toast;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
+import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.mvp.BasePresenter;
 
 /**
@@ -13,11 +19,32 @@ import privat.mo.tidelib.mvp.BasePresenter;
 
 public class HomeFragmentPresenter extends BasePresenter<IHomeFragmentView> {
 
+    private City mCitySelected;
+
     private List<Event> homeRecommends = new ArrayList<>();
 
     private List<Store> homeSelectedStores = new ArrayList<>();
 
     private List<Event> homeCityMaps = new ArrayList<>();
+
+
+    /**
+     * 获取选中城市
+     */
+    public void getHomeCitySelected() {
+        if (mCitySelected == null) {
+            return;
+        }
+        getView().initHomeCitySelected(mCitySelected);
+    }
+
+    @Subscribe
+    public void onUpdateCitySelected(City city) {
+        mCitySelected = city;
+        TideMessage.showMessage(city.getName());
+    }
+
+
 
     /**
      * 获取首页 "推荐" 相关列表

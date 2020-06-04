@@ -6,7 +6,7 @@ package aprivate.mo.tide.entity;
  * "所在城市" 实体
  */
 
-public class CitySelected {
+public class City {
 
     private String imgSrc;
     private String name;

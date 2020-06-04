@@ -38,7 +38,6 @@
                 android:layout_alignParentEnd="true"
                 android:paddingEnd="18dp"
                 android:gravity="center_vertical"
-                android:text="南京"
                 android:textSize="14sp"
                 android:textColor="@color/title"/>
 

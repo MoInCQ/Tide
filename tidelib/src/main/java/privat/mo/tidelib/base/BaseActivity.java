@@ -3,10 +3,14 @@ package privat.mo.tidelib.base;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import me.yokeyword.fragmentation.SupportActivity;
 import privat.mo.tidelib.mvp.BasePresenter;
@@ -49,6 +53,8 @@ public abstract class BaseActivity<V extends IView, P extends BasePresenter<V>> 
         // 获取View
         mPresenter.takeView((V) this);
 
+        // 注册EventBus
+        EventBus.getDefault().register(this);
     }
 
 
@@ -64,6 +70,9 @@ public abstract class BaseActivity<V extends IView, P extends BasePresenter<V>> 
         }
 
         super.onDestroy();
+
+        // 解注册EventBus
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -92,6 +101,12 @@ public abstract class BaseActivity<V extends IView, P extends BasePresenter<V>> 
         return mPresenter;
     }
 
+    /**
+     * 空实现完成对EventBus的封装
+     */
+    @Subscribe
+    public void onEvent(Message message){
+    }
 
 
 }

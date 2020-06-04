@@ -1,11 +1,15 @@
 package privat.mo.tidelib.base;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import me.yokeyword.fragmentation.SupportFragment;
 import privat.mo.tidelib.mvp.BasePresenter;
@@ -32,6 +36,9 @@ public abstract class BaseFragment<V extends IView, P extends BasePresenter<V>> 
 
         initView(view);
         initData();
+
+        // 注册EventBus
+        EventBus.getDefault().register(this);
 
         return view;
     }
@@ -84,5 +91,16 @@ public abstract class BaseFragment<V extends IView, P extends BasePresenter<V>> 
         }
 
         super.onDestroy();
+
+        // 解注册EventBus
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    /**
+     * 空实现完成对EventBus的封装
+     */
+    @Subscribe
+    public void onEvent(Message message){
     }
 }

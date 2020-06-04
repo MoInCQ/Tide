@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import aprivate.mo.tide.R;
-import aprivate.mo.tide.entity.CitySelected;
+import aprivate.mo.tide.entity.City;
 import com.bumptech.glide.Glide;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 public class DrawerSelectCityAdapter extends
     RecyclerView.Adapter<DrawerSelectCityAdapter.CitySelectedViewHolder> {
 
-  private List<CitySelected> citySelectedList;
+  private List<City> cityList;
   private Context context;
 
 
@@ -46,11 +46,11 @@ public class DrawerSelectCityAdapter extends
   /**
    * 构造rv
    *
-   * @param citySelectedList
+   * @param cityList
    */
-  public DrawerSelectCityAdapter(Context context, List<CitySelected> citySelectedList) {
+  public DrawerSelectCityAdapter(Context context, List<City> cityList) {
     this.context = context;
-    this.citySelectedList = citySelectedList;
+    this.cityList = cityList;
   }
 
   @NonNull
@@ -63,7 +63,7 @@ public class DrawerSelectCityAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull final CitySelectedViewHolder viewHolder, final int i) {
-    viewHolder.tvCityName.setText(citySelectedList.get(i).getName());
+    viewHolder.tvCityName.setText(cityList.get(i).getName());
     Glide.with(context)
         .load(R.drawable.img_city)
         .into(viewHolder.civCityCover);
@@ -91,7 +91,7 @@ public class DrawerSelectCityAdapter extends
 
   @Override
   public int getItemCount() {
-    return citySelectedList == null ? 0 : citySelectedList.size();
+    return cityList == null ? 0 : cityList.size();
   }
 
 

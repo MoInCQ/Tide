@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import aprivate.mo.tide.bean.TideUser;
+import aprivate.mo.tide.entity.TideUser;
 import aprivate.mo.tide.utils.TideMessage;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
