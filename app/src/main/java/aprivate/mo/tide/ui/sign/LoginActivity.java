@@ -89,27 +89,8 @@ public class LoginActivity extends BaseActivity<ILoginActivityView, LoginActivit
                                 .setPositiveButton("完成", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if (TextUtils.isEmpty(etAccount.getText().toString())
-                                                || TextUtils.isEmpty(etPassword.getText().toString())
-                                                || TextUtils.isEmpty(etUserName.getText().toString())) {
-                                            TideMessage.showMessage("所有待填项不能为空！");
-                                            return;
-                                        }
-                                        TideUser user = new TideUser();
-                                        user.setAccount(etAccount.getText().toString());
-                                        user.setPassword(etPassword.getText().toString());
-                                        user.setUserName(etUserName.getText().toString());
-                                        user.save(new SaveListener<String>() {
-                                            @Override
-                                            public void done(String objectId, BmobException e) {
-                                                if(e == null){
-                                                    user.setObjectId(objectId);
-                                                    TideMessage.showMessage("注册成功！");
-                                                }else{
-                                                    TideMessage.showMessage("注册失败：" + e.getMessage());
-                                                }
-                                            }
-                                        });
+                                        getPresenter().register(etAccount.getText().toString(), etPassword.getText().toString(), etUserName.getText().toString());
+
                                     }
                                 });
 
@@ -125,8 +106,18 @@ public class LoginActivity extends BaseActivity<ILoginActivityView, LoginActivit
     }
 
     @Override
-    public void loginFail() {
-        TideMessage.showMessage("登陆失败");
+    public void loginFail(BmobException e) {
+        TideMessage.showMessage("登陆失败：" + e.getMessage());
+    }
+
+    @Override
+    public void registerSuccess(TideUser user) {
+        TideMessage.showMessage("注册成功！");
+    }
+
+    @Override
+    public void registerFail(BmobException e) {
+        TideMessage.showMessage("注册失败：" + e.getMessage());
     }
 
     @Override

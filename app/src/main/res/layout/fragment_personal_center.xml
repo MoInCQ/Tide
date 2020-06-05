@@ -55,7 +55,7 @@
             <!--选项-->
             <!--个人资料-->
             <RelativeLayout
-                android:id="@+id/rl_personal_center_account"
+                android:id="@+id/rl_personal_center_profile"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/iv_personal_center_head_blur">
@@ -93,7 +93,7 @@
                 android:id="@+id/rl_personal_center_collect"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/rl_personal_center_account">
+                android:layout_below="@+id/rl_personal_center_profile">
 
                 <ImageView
                     android:id="@+id/iv_personal_center_ic_collect"

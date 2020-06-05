@@ -13,7 +13,6 @@ import privat.mo.tidelib.mvp.BaseView;
 
 public interface IHomeFragmentView extends BaseView {
 
-    void initHomeCitySelected(City city);
 
     void initHomeRecommendInfo(List<Event> homeRecommendList);
 

@@ -1,6 +1,7 @@
 package aprivate.mo.tide.ui.sign;
 
 import aprivate.mo.tide.entity.TideUser;
+import cn.bmob.v3.exception.BmobException;
 import privat.mo.tidelib.mvp.BaseView;
 
 /**
@@ -9,6 +10,9 @@ import privat.mo.tidelib.mvp.BaseView;
 
 public interface ILoginActivityView extends BaseView {
     void loginSuccess(TideUser user);
-    void loginFail();
+    void loginFail(BmobException e);
+
+    void registerSuccess(TideUser user);
+    void registerFail(BmobException e);
 
 }

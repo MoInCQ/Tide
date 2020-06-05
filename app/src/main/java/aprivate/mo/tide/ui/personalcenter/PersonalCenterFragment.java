@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import aprivate.mo.tide.R;
+import aprivate.mo.tide.ui.personalcenter.profile.PersonalProfileFragment;
 import privat.mo.tidelib.base.BaseFragment;
 
 /**
@@ -11,9 +12,10 @@ import privat.mo.tidelib.base.BaseFragment;
  */
 
 public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragmentView, PersonalFragmentPresenter>
-        implements IPersonalCenterFragmentView {
+        implements IPersonalCenterFragmentView, View.OnClickListener {
 
     private RelativeLayout rlLogout;
+    private RelativeLayout rlProfile;
 
     @Override
     protected int getLayoutResId() {
@@ -33,12 +35,21 @@ public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragment
     @Override
     protected void initView(View view) {
         rlLogout = (RelativeLayout) view.findViewById(R.id.rl_personal_center_logout);
-        rlLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        rlLogout.setOnClickListener(this);
+        rlProfile = (RelativeLayout) view.findViewById(R.id.rl_personal_center_profile);
+        rlProfile.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.rl_personal_center_logout:
                 getActivity().finish();
-            }
-        });
+                break;
+            case R.id.rl_personal_center_profile:
+                start(PersonalProfileFragment.newInstance());
+                default:
+        }
     }
 
     @Override

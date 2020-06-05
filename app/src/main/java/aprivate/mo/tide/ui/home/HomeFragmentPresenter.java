@@ -31,11 +31,8 @@ public class HomeFragmentPresenter extends BasePresenter<IHomeFragmentView> {
     /**
      * 获取选中城市
      */
-    public void getHomeCitySelected() {
-        if (mCitySelected == null) {
-            return;
-        }
-        getView().initHomeCitySelected(mCitySelected);
+    public void initHomeCitySelected(City city) {
+        mCitySelected = city;
     }
 
 

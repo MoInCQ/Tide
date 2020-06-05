@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aprivate.mo.tide.R;
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.entity.Classify;
 import privat.mo.tidelib.mvp.BasePresenter;
 
@@ -13,8 +14,17 @@ import privat.mo.tidelib.mvp.BasePresenter;
 
 public class ExploreFragmentPresenter extends BasePresenter<IExploreFragmentView> {
 
+    private City mCitySelected;
+
     private List<Classify> classifyList = new ArrayList<>();
 
+    public void initCitySelected(City city) {
+        mCitySelected = city;
+    }
+
+    /**
+     * 获取分类列表数据
+     */
     public void getClassifyList() {
 
         Classify classify = new Classify();

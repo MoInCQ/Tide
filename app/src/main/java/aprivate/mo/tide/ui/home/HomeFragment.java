@@ -83,8 +83,8 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
 
         tvHomeCitySelected.setText(city.getName());
 
-        // 城市显示
-        getPresenter().getHomeCitySelected();
+        // 将最新选中的城市传到Presenter中，用于刷新列表数据
+        getPresenter().initHomeCitySelected(city);
         // 列表相关
         getPresenter().getHomeRecommendList();
         getPresenter().getHomeSelectedStoreList();
@@ -92,10 +92,6 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
 
     }
 
-    @Override
-    public void initHomeCitySelected(City city) {
-        // TODO: 2020/6/4 选中城市后页面逻辑变化
-    }
 
     /**
      * 推荐相关

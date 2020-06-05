@@ -4,10 +4,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
 import aprivate.mo.tide.R;
+import aprivate.mo.tide.entity.City;
 import aprivate.mo.tide.entity.Classify;
 import aprivate.mo.tide.ui.explore.classify.ClassifyFragment;
 import aprivate.mo.tide.adapter.ExploreClassifyAdapter;
@@ -24,18 +28,36 @@ public class ExploreFragment extends BaseFragment<IExploreFragmentView, ExploreF
     private RecyclerView rvClassify;
     private ExploreClassifyAdapter exploreClassifyAdapter;
     private RecyclerView.LayoutManager exploreClassifyLayoutManager;
-
+    private TextView tvCitySelected;
 
 
 
     @Override
     protected void initData() {
-        getPresenter().getClassifyList();
+
     }
 
     @Override
     protected void initView(View view) {
         rvClassify = (RecyclerView) view.findViewById(R.id.rv_explore_classify);
+        tvCitySelected = (TextView) view.findViewById(R.id.tv_explore_city_selected);
+
+    }
+
+    /**
+     * 获取选中城市更新(通过MainActivity的getCitySelected控制)
+     *
+     * @param city
+     */
+    @Subscribe(sticky = true)
+    public void onUpdateCitySelected(City city) {
+
+        tvCitySelected.setText(city.getName());
+
+        // 将最新选中的城市传到Presenter中，用于刷新列表数据
+        getPresenter().initCitySelected(city);
+        // 列表相关
+        getPresenter().getClassifyList();
     }
 
     /**
