@@ -12,6 +12,6 @@ import privat.mo.tidelib.mvp.IView;
 
 public interface IPersonalProfileFragmentView extends BaseView {
 
-    void initPersonalProfileList(List<ProfileItem> profileItems);
+    void initPersonalProfileList(List<ProfileItem> profileItems, String objID);
 
 }

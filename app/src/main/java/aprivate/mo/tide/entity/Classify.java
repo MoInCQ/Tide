@@ -49,6 +49,8 @@ public class Classify implements Parcelable {
         dest.writeInt(cover);
     }
 
+
+
     public static final Creator<Classify> CREATOR = new Creator<Classify>() {
         @Override
         public Classify createFromParcel(Parcel source) {

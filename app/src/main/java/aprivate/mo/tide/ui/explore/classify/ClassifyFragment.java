@@ -63,6 +63,9 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
     @Override
     protected void initView(View view) {
         //获取索引数据初始化
+        if (getArguments().getParcelable(ARG_ITEM) == null) {
+            pop();
+        }
         mClassify = getArguments().getParcelable(ARG_ITEM);
 
         //顶部栏
@@ -127,8 +130,6 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
     protected ClassifyFragmentPresenter createPresenter() {
         return new ClassifyFragmentPresenter();
     }
-
-
 
     @Override
     public void showLoading() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.ProfileItem;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/6/5
@@ -21,7 +22,8 @@ import aprivate.mo.tide.entity.ProfileItem;
 public class PersonalProfileAdapter extends
         RecyclerView.Adapter<PersonalProfileAdapter.PersonalProfileViewHolder> {
 
-    private List<ProfileItem> profileItems;
+    private List<ProfileItem> mProfileItems;
+    private OnItemClickListener mItemClickListener;
 
     /**
      * 构造rv
@@ -29,7 +31,7 @@ public class PersonalProfileAdapter extends
      * @param profileItems
      */
     public PersonalProfileAdapter(List<ProfileItem> profileItems) {
-        this.profileItems = profileItems;
+        this.mProfileItems = profileItems;
     }
 
     @NonNull
@@ -42,13 +44,28 @@ public class PersonalProfileAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull PersonalProfileViewHolder viewHolder, int i) {
-        viewHolder.tvTitle.setText(profileItems.get(i).getTitle());
-        viewHolder.tvContent.setText(profileItems.get(i).getContent());
+        viewHolder.tvTitle.setText(mProfileItems.get(i).getTitle());
+        viewHolder.tvContent.setText(mProfileItems.get(i).getContent());
+
+        // 绑定点击事件
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(viewHolder.getAdapterPosition()
+                            , viewHolder.itemView, viewHolder);
+                }
+            }
+        });
+    }
+
+    public void setOnPersonalProfileItemClickListener(OnItemClickListener itemClickListener) {
+        this.mItemClickListener = itemClickListener;
     }
 
     @Override
     public int getItemCount() {
-        return profileItems == null ? 0 : profileItems.size();
+        return mProfileItems == null ? 0 : mProfileItems.size();
     }
 
     /**

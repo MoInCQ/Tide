@@ -5,18 +5,17 @@
     android:orientation="vertical">
 
     <aprivate.mo.tide.widget.TideTitleBar
-        android:id="@+id/ttb_personal_profile"
+        android:id="@+id/ttb_modify_personal_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </aprivate.mo.tide.widget.TideTitleBar>
+        android:layout_height="wrap_content" />
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_personal_profile"
+    <EditText
+        android:id="@+id/et_modify_personal_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:textColor="@color/greyText"/>
 
 </LinearLayout>

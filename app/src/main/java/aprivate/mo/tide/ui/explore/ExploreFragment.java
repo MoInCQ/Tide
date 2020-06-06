@@ -72,8 +72,7 @@ public class ExploreFragment extends BaseFragment<IExploreFragmentView, ExploreF
             @Override
             public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
                 //获取点击的Item的Classify实体
-                ClassifyFragment classifyFragment = ClassifyFragment.newInstance(classifies.get(position));
-                start(classifyFragment);
+                start(ClassifyFragment.newInstance(classifies.get(position)));
             }
 
             @Override

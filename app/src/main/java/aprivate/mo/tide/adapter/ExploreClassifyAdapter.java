@@ -59,8 +59,8 @@ public class ExploreClassifyAdapter extends
       @Override
       public void onClick(View v) {
         if (classifySelectedListener != null) {
-          int position = viewHolder.getAdapterPosition();
-          classifySelectedListener.onItemClick(position, viewHolder.itemView, viewHolder);
+          classifySelectedListener.onItemClick(viewHolder.getAdapterPosition()
+                  , viewHolder.itemView, viewHolder);
         }
       }
     });

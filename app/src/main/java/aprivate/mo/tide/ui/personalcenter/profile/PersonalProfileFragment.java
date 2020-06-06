@@ -3,7 +3,6 @@ package aprivate.mo.tide.ui.personalcenter.profile;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -13,16 +12,21 @@ import aprivate.mo.tide.R;
 import aprivate.mo.tide.adapter.PersonalProfileAdapter;
 import aprivate.mo.tide.entity.ProfileItem;
 import aprivate.mo.tide.entity.TideUser;
+import aprivate.mo.tide.Message.UpdateUserMessage;
+import aprivate.mo.tide.ui.personalcenter.profile.modify.ModifyPersonalProfileFragment;
+import aprivate.mo.tide.utils.TideMessage;
+import aprivate.mo.tide.widget.TideTitleBar;
 import privat.mo.tidelib.base.BaseFragment;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/6/4
  */
 
 public class PersonalProfileFragment extends BaseFragment<IPersonalProfileFragmentView, PersonalProfileFragmentPresenter>
-        implements IPersonalProfileFragmentView, View.OnClickListener {
+        implements IPersonalProfileFragmentView {
 
-    private ImageView ivBack;
+    private TideTitleBar tittleBar;
     private RecyclerView rvProfile;
     private PersonalProfileAdapter mProfileAdpter;
     private LinearLayoutManager mProfileLayoutManager;
@@ -44,20 +48,17 @@ public class PersonalProfileFragment extends BaseFragment<IPersonalProfileFragme
 
     @Override
     protected void initView(View view) {
-        ivBack = (ImageView) view.findViewById(R.id.iv_back);
-        ivBack.setOnClickListener(this);
+        tittleBar = (TideTitleBar) view.findViewById(R.id.ttb_personal_profile);
+        tittleBar.setTitle("个人资料");
+        tittleBar.setBackClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop();
+            }
+        });
         rvProfile = (RecyclerView) view.findViewById(R.id.rv_personal_profile);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_back:
-                pop();
-                break;
-                default:
-        }
-    }
 
 
     @Subscribe(sticky = true)
@@ -65,6 +66,10 @@ public class PersonalProfileFragment extends BaseFragment<IPersonalProfileFragme
         getPresenter().getPersonalProfileList(user);
     }
 
+    @Subscribe
+    public void onUpdatePersonalProfile(UpdateUserMessage fakeUser) {
+        getPresenter().updatePersonalProfileList(fakeUser.getObjID());
+    }
 
     /**
      * 初始化用户个人资料列表
@@ -72,8 +77,24 @@ public class PersonalProfileFragment extends BaseFragment<IPersonalProfileFragme
      * @param profileItems
      */
     @Override
-    public void initPersonalProfileList(List<ProfileItem> profileItems) {
+    public void initPersonalProfileList(List<ProfileItem> profileItems, String objID) {
         mProfileAdpter = new PersonalProfileAdapter(profileItems);
+        mProfileAdpter.setOnPersonalProfileItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                if (profileItems.get(position).isModify()) {
+                    start(ModifyPersonalProfileFragment.newInstance(profileItems.get(position), objID));
+                } else {
+                    TideMessage.showMessage("该项信息不可修改");
+                }
+
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         mProfileLayoutManager = new LinearLayoutManager(getContext());
         mProfileLayoutManager.setOrientation(RecyclerView.VERTICAL);
         rvProfile.setAdapter(mProfileAdpter);

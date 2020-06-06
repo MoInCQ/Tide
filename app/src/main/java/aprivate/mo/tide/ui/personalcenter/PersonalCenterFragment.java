@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.ui.personalcenter.profile.PersonalProfileFragment;
+import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.base.BaseFragment;
 
 /**
@@ -16,6 +17,9 @@ public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragment
 
     private RelativeLayout rlLogout;
     private RelativeLayout rlProfile;
+    private RelativeLayout rlCollection;
+    private RelativeLayout rlQRCode;
+    private RelativeLayout rlFootPrint;
 
     @Override
     protected int getLayoutResId() {
@@ -38,6 +42,12 @@ public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragment
         rlLogout.setOnClickListener(this);
         rlProfile = (RelativeLayout) view.findViewById(R.id.rl_personal_center_profile);
         rlProfile.setOnClickListener(this);
+        rlCollection = (RelativeLayout) view.findViewById(R.id.rl_personal_center_collect);
+        rlCollection.setOnClickListener(this);
+        rlQRCode = (RelativeLayout) view.findViewById(R.id.rl_personal_center_qrcode);
+        rlQRCode.setOnClickListener(this);
+        rlFootPrint = (RelativeLayout) view.findViewById(R.id.rl_personal_center_footprint);
+        rlFootPrint.setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +58,16 @@ public class PersonalCenterFragment extends BaseFragment<IPersonalCenterFragment
                 break;
             case R.id.rl_personal_center_profile:
                 start(PersonalProfileFragment.newInstance());
+                break;
+            case R.id.rl_personal_center_collect:
+                TideMessage.showMessage("开发中，敬请期待");
+                break;
+            case R.id.rl_personal_center_qrcode:
+                TideMessage.showMessage("开发中，敬请期待");
+                break;
+            case R.id.rl_personal_center_footprint:
+                TideMessage.showMessage("开发中，敬请期待");
+                break;
                 default:
         }
     }
