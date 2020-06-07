@@ -17,10 +17,14 @@ import aprivate.mo.tide.adapter.ClassifyStoreAdapter;
 import aprivate.mo.tide.entity.Classify;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
+import aprivate.mo.tide.ui.home.store.StoreFragment;
 import privat.mo.tidelib.base.BaseFragment;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/3/17
+ *
+ * 分类详情页
  */
 
 public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, ClassifyFragmentPresenter> implements IClassifyFragmentView {
@@ -102,6 +106,17 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
         classifyStoreLayoutManager = new LinearLayoutManager(getContext());
         classifyStoreLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         classifyStoreAdapter = new ClassifyStoreAdapter(getContext(), storeList);
+        classifyStoreAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(StoreFragment.newInstance(storeList.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvStore.setLayoutManager(classifyStoreLayoutManager);
         rvStore.setAdapter(classifyStoreAdapter);
     }

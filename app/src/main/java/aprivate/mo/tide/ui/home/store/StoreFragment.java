@@ -1,13 +1,19 @@
 package aprivate.mo.tide.ui.home.store;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import aprivate.mo.tide.R;
+import aprivate.mo.tide.adapter.StoreEventAdapter;
+import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
 import aprivate.mo.tide.widget.TideTitleBar;
 import privat.mo.tidelib.base.BaseFragment;
@@ -29,6 +35,10 @@ public class StoreFragment extends BaseFragment<IStoreFragmentView, StoreFragmen
     private ImageView ivCover;
     private TextView tvAddress;
     private TextView tvIntro;
+
+    private RecyclerView rvEvent;
+    private StoreEventAdapter mEventAdapter;
+    private LinearLayoutManager mEventLayoutManager;
 
     @Override
     protected int getLayoutResId() {
@@ -62,12 +72,29 @@ public class StoreFragment extends BaseFragment<IStoreFragmentView, StoreFragmen
         });
         titleBar.setTitle(mStore.getName());
 
+        // 店铺相关信息
         ivCover = (ImageView) view.findViewById(R.id.iv_store_cover);
         ivCover.setImageResource(mStore.getCover());
         tvAddress = (TextView) view.findViewById(R.id.tv_store_address);
         tvAddress.setText(mStore.getAddress());
         tvIntro = (TextView) view.findViewById(R.id.tv_store_intro);
         tvIntro.setText(mStore.getIntro());
+
+        // 店铺相关活动列表
+        rvEvent = (RecyclerView) view.findViewById(R.id.rv_store_event);
+        getPresenter().getStoreEventList();
+
+    }
+
+    @Override
+    public void initStoreEventList(List<Event> eventList) {
+
+        mEventAdapter = new StoreEventAdapter(eventList, getContext());
+        mEventLayoutManager = new LinearLayoutManager(getContext());
+        mEventLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvEvent.setLayoutManager(mEventLayoutManager);
+        rvEvent.setAdapter(mEventAdapter);
+
     }
 
     @Override

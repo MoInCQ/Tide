@@ -30,18 +30,16 @@
             android:textSize="14sp"
             android:textColor="@color/title"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:text="先锋书店"/>
+            android:layout_marginTop="12dp" />
 
         <TextView
-            android:id="@+id/tv_classify_store_item_brief_info"
+            android:id="@+id/tv_classify_store_item_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/greyText"
-            android:textSize="12sp"
-            android:text="南京"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 

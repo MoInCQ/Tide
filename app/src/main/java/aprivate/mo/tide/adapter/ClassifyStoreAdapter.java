@@ -6,10 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Store;
 import com.bumptech.glide.Glide;
 import de.hdodenhof.circleimageview.CircleImageView;
+import privat.mo.tidelib.listener.OnItemClickListener;
+
 import java.util.List;
 
 /**
@@ -21,6 +25,8 @@ public class ClassifyStoreAdapter extends
 
   private List<Store> storeList;
   private Context context;
+
+  private OnItemClickListener onItemClickListener;
 
   /**
    * 构造rv
@@ -43,13 +49,29 @@ public class ClassifyStoreAdapter extends
   @Override
   public void onBindViewHolder(@NonNull ClassifyStoreViewHolder viewHolder, int i) {
     Glide.with(context)
-        .load(R.drawable.img_handicraft)
+        .load(storeList.get(i).getCover())
         .into(viewHolder.civCover);
+    viewHolder.tvName.setText(storeList.get(i).getName());
+    viewHolder.tvCity.setText(storeList.get(i).getCity());
+
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (onItemClickListener != null) {
+          onItemClickListener.onItemClick(i, v, viewHolder);
+        }
+      }
+    });
+
   }
 
   @Override
   public int getItemCount() {
     return storeList == null ? 0 : storeList.size();
+  }
+
+  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    this.onItemClickListener = onItemClickListener;
   }
 
   /**
@@ -58,10 +80,15 @@ public class ClassifyStoreAdapter extends
   static class ClassifyStoreViewHolder extends RecyclerView.ViewHolder {
 
     CircleImageView civCover;
+    TextView tvName;
+    TextView tvCity;
 
     ClassifyStoreViewHolder(@NonNull View itemView) {
       super(itemView);
       civCover = (CircleImageView) itemView.findViewById(R.id.civ_classify_store_item_cover);
+      tvName = (TextView) itemView.findViewById(R.id.tv_classify_store_item_name);
+      tvCity = (TextView) itemView.findViewById(R.id.tv_classify_store_item_city);
+
     }
   }
 }

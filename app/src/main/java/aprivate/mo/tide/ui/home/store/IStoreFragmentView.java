@@ -1,5 +1,8 @@
 package aprivate.mo.tide.ui.home.store;
 
+import java.util.List;
+
+import aprivate.mo.tide.entity.Event;
 import privat.mo.tidelib.mvp.BaseView;
 
 /**
@@ -7,4 +10,7 @@ import privat.mo.tidelib.mvp.BaseView;
  */
 
 public interface IStoreFragmentView extends BaseView {
+
+    void initStoreEventList(List<Event> eventList);
+
 }
