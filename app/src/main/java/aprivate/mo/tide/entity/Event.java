@@ -1,19 +1,22 @@
 package aprivate.mo.tide.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by Mo on 2020/3/10
  *
- * 事件实体(作为所有事件的父类 eg：推荐活动、文章、店铺)
+ * 事件实体(作为所有事件的父类 eg：推荐活动、文章)
  */
 
-public class Event extends BmobObject {
+public class Event extends BmobObject implements Parcelable {
 
     private String title;
     private String tag;
     private String subTitle;
-    private String coverImgUrl;
+    private int cover;
     private String intro;
 
     private String address;
@@ -23,7 +26,63 @@ public class Event extends BmobObject {
 
     private int fares;
     private int supposedPopulation;
-    private int registerdPopulation;
+    private int registerPopulation;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(tag);
+        dest.writeString(subTitle);
+        dest.writeInt(cover);
+        dest.writeString(intro);
+
+        dest.writeString(address);
+        dest.writeString(date);
+        dest.writeString(time);
+        dest.writeString(sponsor);
+
+        dest.writeInt(fares);
+        dest.writeInt(supposedPopulation);
+        dest.writeInt(registerPopulation);
+    }
+
+    public Event() { }
+
+    private Event(Parcel source) {
+        this.title = source.readString();
+        this.tag = source.readString();
+        this.subTitle = source.readString();
+        this.cover = source.readInt();
+        this.intro = source.readString();
+
+        this.address = source.readString();
+        this.date = source.readString();
+        this.time = source.readString();
+        this.sponsor = source.readString();
+
+        this.fares = source.readInt();
+        this.supposedPopulation = source.readInt();
+        this.registerPopulation = source.readInt();
+
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel source) {
+            Event event = new Event(source);
+            return event;
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -105,19 +164,19 @@ public class Event extends BmobObject {
         this.supposedPopulation = supposedPopulation;
     }
 
-    public int getRegisterdPopulation() {
-        return registerdPopulation;
+    public int getRegisterPopulation() {
+        return registerPopulation;
     }
 
-    public void setRegisterdPopulation(int registerdPopulation) {
-        this.registerdPopulation = registerdPopulation;
+    public void setRegisterPopulation(int registerPopulation) {
+        this.registerPopulation = registerPopulation;
     }
 
-    public String getCoverImgUrl() {
-        return coverImgUrl;
+    public int getCover() {
+        return cover;
     }
 
-    public void setCoverImgUrl(String coverImgUrl) {
-        this.coverImgUrl = coverImgUrl;
+    public void setCover(int cover) {
+        this.cover = cover;
     }
 }

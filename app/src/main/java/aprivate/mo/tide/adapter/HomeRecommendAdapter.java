@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Event;
+import privat.mo.tidelib.listener.OnItemClickListener;
+
 import com.bumptech.glide.Glide;
 import java.util.List;
 
@@ -23,6 +27,8 @@ public class HomeRecommendAdapter extends
 
   private List<Event> eventList;
   private Context context;
+
+  private OnItemClickListener onItemClickListener;
 
   /**
    * 构造rv
@@ -45,13 +51,26 @@ public class HomeRecommendAdapter extends
   @Override
   public void onBindViewHolder(@NonNull HomeRecommendViewHolder viewHolder, int i) {
     Glide.with(context)
-        .load(R.drawable.img_recommend)
+        .load(eventList.get(i).getCover())
         .into(viewHolder.ivCover);
+    viewHolder.tvTag.setText("# " + eventList.get(i).getTag());
+    viewHolder.tvTitle.setText(eventList.get(i).getTitle() +  "  ｜  " + eventList.get(i).getSubTitle());
+
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onItemClickListener.onItemClick(i, v, viewHolder);
+      }
+    });
   }
 
   @Override
   public int getItemCount() {
     return eventList == null ? 0 : eventList.size();
+  }
+
+  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    this.onItemClickListener = onItemClickListener;
   }
 
   /**
@@ -60,10 +79,14 @@ public class HomeRecommendAdapter extends
   static class HomeRecommendViewHolder extends RecyclerView.ViewHolder {
 
     ImageView ivCover;
+    TextView tvTag;
+    TextView tvTitle;
 
     HomeRecommendViewHolder(@NonNull View itemView) {
       super(itemView);
       ivCover = (ImageView) itemView.findViewById(R.id.iv_home_recommend_item_cover);
+      tvTag = (TextView) itemView.findViewById(R.id.tv_home_recommend_item_tag);
+      tvTitle = (TextView) itemView.findViewById(R.id.tv_home_recommend_item_title);
     }
   }
 }

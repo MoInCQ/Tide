@@ -16,6 +16,7 @@ import aprivate.mo.tide.entity.Store;
 import aprivate.mo.tide.adapter.HomeCityMapAdapter;
 import aprivate.mo.tide.adapter.HomeRecommendAdapter;
 import aprivate.mo.tide.adapter.HomeSelectedStoreAdpter;
+import aprivate.mo.tide.ui.home.event.EventFragment;
 import aprivate.mo.tide.ui.home.store.StoreFragment;
 import aprivate.mo.tide.utils.TideMessage;
 import privat.mo.tidelib.base.BaseFragment;
@@ -105,6 +106,17 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
         homeRecommendLayoutManager = new LinearLayoutManager(getContext());
         homeRecommendLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         homeRecommendAdapter = new HomeRecommendAdapter(getContext(), homeRecommendList);
+        homeRecommendAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(EventFragment.newInstance(homeRecommendList.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvHomeRecommend.setLayoutManager(homeRecommendLayoutManager);
         rvHomeRecommend.setAdapter(homeRecommendAdapter);
     }

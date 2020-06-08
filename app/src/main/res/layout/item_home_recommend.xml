@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="@color/greyText"
-        android:layout_marginTop="16dp"
-        android:text="# 城市客厅"/>
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/tv_home_recommend_item_title"
@@ -28,10 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textSize="14sp"
-        android:textColor="@color/title"
-        android:text="DeepBar x 潍坊学院 ｜ 发现好去处"/>
-
-
+        android:textColor="@color/title" />
 
 
 </LinearLayout>
