@@ -7,10 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
+
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Event;
-import com.bumptech.glide.Glide;
-import java.util.List;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/3/18
@@ -23,6 +28,8 @@ public class ClassifyEventAdapter extends
 
   private List<Event> eventList;
   private Context context;
+
+  private OnItemClickListener onItemClickListener;
 
   /**
    * 构造rv
@@ -44,9 +51,28 @@ public class ClassifyEventAdapter extends
 
   @Override
   public void onBindViewHolder(@NonNull ClassifyEventViewHolder viewHolder, int i) {
+    Event event = eventList.get(i);
     Glide.with(context)
-        .load(R.drawable.img_drama)
-        .into(viewHolder.ivCover);
+            .load(event.getCover())
+            .into(viewHolder.ivCover);
+    viewHolder.tvTitle.setText(event.getTitle() + " | " + event.getSubTitle());
+    viewHolder.tvIntro.setText(event.getIntro());
+    viewHolder.tvTime.setText(event.getDate() + " —— " + event.getTime());
+    viewHolder.tvAddress.setText(event.getSponsor() + " —— " + event.getAddress());
+    viewHolder.tvPopulation.setText(event.getRegisterPopulation() + " / " + event.getSupposedPopulation());
+    viewHolder.tvPopulation.setText(event.getFares() + " 元 / 人");
+
+
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onItemClickListener.onItemClick(i, v, viewHolder);
+      }
+    });
+  }
+
+  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    this.onItemClickListener = onItemClickListener;
   }
 
   @Override
@@ -60,10 +86,23 @@ public class ClassifyEventAdapter extends
   static class ClassifyEventViewHolder extends RecyclerView.ViewHolder {
 
     ImageView ivCover;
+    TextView tvTitle;
+    TextView tvIntro;
+    TextView tvTime;
+    TextView tvAddress;
+    TextView tvPopulation;
+    TextView tvFares;
 
     ClassifyEventViewHolder(@NonNull View itemView) {
       super(itemView);
       ivCover = (ImageView) itemView.findViewById(R.id.iv_classify_event_cover);
+      tvTitle = (TextView) itemView.findViewById(R.id.tv_classify_event_title);
+      tvIntro = (TextView) itemView.findViewById(R.id.tv_classify_event_brief_info);
+      tvTime = (TextView) itemView.findViewById(R.id.tv_classify_event_time);
+      tvAddress = (TextView) itemView.findViewById(R.id.tv_classify_event_address);
+      tvPopulation = (TextView) itemView.findViewById(R.id.tv_classify_event_population);
+      tvFares = (TextView) itemView.findViewById(R.id.tv_classify_event_fee);
+
     }
   }
 }

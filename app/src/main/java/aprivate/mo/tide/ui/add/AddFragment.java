@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.concurrent.TimeUnit;
 
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Event;
+import aprivate.mo.tide.entity.TideUser;
 import aprivate.mo.tide.utils.TideMessage;
 import io.reactivex.functions.Consumer;
 import privat.mo.tidelib.base.BaseFragment;
@@ -39,6 +42,8 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
     private static final int TOOLBAR_HEIGHT_OFFSET = -450;
 
     private Event event;
+
+    private TideUser mUser;
 
 
 
@@ -77,7 +82,9 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
                         event.setFares(TextUtils.isEmpty(etFares.getText().toString())
                                 ? 0 : Integer.parseInt(etFares.getText().toString()));
                         event.setIntro(etIntro.getText().toString());
-                        getPresenter().submitEvent(event);
+
+
+                        getPresenter().submitEvent(mUser, event);
                     }
                 });
 
@@ -95,7 +102,22 @@ public class AddFragment extends BaseFragment<IAddFragmentView, AddFragmentPrese
 
     }
 
-    // 提交活动成功或失败
+    /**
+     * 限制普通用户没有发布权限
+     */
+    @Override
+    public void submitEventLimitAuthority() {
+        TideMessage.showMessage("您没有发布活动权限，请向系统管理员申请商家身份");
+    }
+
+    @Subscribe(sticky = true)
+    public void onCheckAddAuthority(TideUser user) {
+        this.mUser = user;
+    }
+
+    /**
+     * 提交活动成功或失败
+     */
     @Override
     public void submitEventSuccess() {
         etTitle.setText("");

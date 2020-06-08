@@ -3,6 +3,7 @@ package aprivate.mo.tide.ui.add;
 import android.text.TextUtils;
 
 import aprivate.mo.tide.entity.Event;
+import aprivate.mo.tide.entity.TideUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import privat.mo.tidelib.mvp.BasePresenter;
@@ -18,7 +19,7 @@ public class AddFragmentPresenter extends BasePresenter<IAddFragmentView> {
      *
      * @param event
      */
-    public void submitEvent(Event event) {
+    public void submitEvent(TideUser user, Event event) {
         if (TextUtils.isEmpty(event.getTitle())
                 || TextUtils.isEmpty(event.getTime())
                 || TextUtils.isEmpty(event.getAddress())
@@ -27,6 +28,12 @@ public class AddFragmentPresenter extends BasePresenter<IAddFragmentView> {
                 || event.getFares() == 0
                 || TextUtils.isEmpty(event.getIntro())) {
             getView().submitEventFail();
+            return;
+        }
+
+        // TODO: 2020/6/8 演示填充逻辑
+        if (!user.getAccount().equals("admin")) {
+            getView().submitEventLimitAuthority();
             return;
         }
 

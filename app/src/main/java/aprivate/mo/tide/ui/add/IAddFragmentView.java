@@ -12,4 +12,6 @@ public interface IAddFragmentView extends BaseView {
 
     void submitEventFail();
 
+    void submitEventLimitAuthority();
+
 }

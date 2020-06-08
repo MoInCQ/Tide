@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Event;
+import privat.mo.tidelib.listener.OnItemClickListener;
+
 import com.bumptech.glide.Glide;
 import java.util.List;
 
@@ -23,6 +27,8 @@ public class HomeCityMapAdapter extends
 
   private List<Event> eventList;
   private Context context;
+
+  private OnItemClickListener onItemClickListener;
 
   public HomeCityMapAdapter(Context context, List<Event> eventList) {
     this.eventList = eventList;
@@ -40,8 +46,21 @@ public class HomeCityMapAdapter extends
   @Override
   public void onBindViewHolder(@NonNull HomeCityMapViewHolder viewHolder, int i) {
     Glide.with(context)
-        .load(R.drawable.img_movie)
+        .load(eventList.get(i).getCover())
         .into(viewHolder.ivCover);
+    viewHolder.tvTitle.setText(eventList.get(i).getTitle() + " | " + eventList.get(i).getSubTitle());
+    viewHolder.tvIntro.setText(eventList.get(i).getIntro());
+
+    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onItemClickListener.onItemClick(i, v, viewHolder);
+      }
+    });
+  }
+
+  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    this.onItemClickListener = onItemClickListener;
   }
 
   @Override
@@ -52,10 +71,14 @@ public class HomeCityMapAdapter extends
   static class HomeCityMapViewHolder extends RecyclerView.ViewHolder {
 
     ImageView ivCover;
+    TextView tvTitle;
+    TextView tvIntro;
 
     HomeCityMapViewHolder(@NonNull View itemView) {
       super(itemView);
       ivCover = (ImageView) itemView.findViewById(R.id.iv_home_city_map_item_cover);
+      tvTitle = (TextView) itemView.findViewById(R.id.tv_home_city_map_item_title);
+      tvIntro = (TextView) itemView.findViewById(R.id.tv_home_city_map_item_intro);
     }
   }
 }

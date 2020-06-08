@@ -15,8 +15,10 @@ import aprivate.mo.tide.R;
 import aprivate.mo.tide.adapter.StoreEventAdapter;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
+import aprivate.mo.tide.ui.home.event.EventFragment;
 import aprivate.mo.tide.widget.TideTitleBar;
 import privat.mo.tidelib.base.BaseFragment;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/6/6
@@ -92,6 +94,17 @@ public class StoreFragment extends BaseFragment<IStoreFragmentView, StoreFragmen
         mEventAdapter = new StoreEventAdapter(eventList, getContext());
         mEventLayoutManager = new LinearLayoutManager(getContext());
         mEventLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mEventAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(EventFragment.newInstance(eventList.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvEvent.setLayoutManager(mEventLayoutManager);
         rvEvent.setAdapter(mEventAdapter);
 

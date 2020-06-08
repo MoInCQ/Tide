@@ -24,7 +24,6 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:text="读行咖啡 · 《霍乱时期的爱情》｜读书分享"
             android:maxLength="22"
             android:layout_alignBottom="@+id/iv_classify_event_cover"
             android:layout_marginBottom="12dp"
@@ -37,8 +36,6 @@
             android:layout_below="@+id/iv_classify_event_cover"
             android:textSize="14sp"
             android:textColor="@color/subTitle"
-            android:text="诚实的生活方式其实是按照自己身体的意愿行事，
-饿的时候吃饭，爱的时候不必撒谎。"
             android:maxLines="2"
             android:ellipsize="end"
             android:lineSpacingExtra="6dp"
@@ -65,7 +62,7 @@
             android:src="@drawable/ic_calendar"/>
 
         <TextView
-            android:id="@+id/tv_classify_event_item_time"
+            android:id="@+id/tv_classify_event_time"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="center_vertical"
@@ -75,7 +72,6 @@
             android:layout_below="@+id/view_classify_event_division"
             android:textSize="12sp"
             android:textColor="@color/greyText"
-            android:text="2020.02.02 晚 —— 7：00 - 9：00 "
             android:maxLength="28"/>
 
         <!--地点-->
@@ -90,7 +86,7 @@
             />
 
         <TextView
-            android:id="@+id/tv_classify_event_item_address"
+            android:id="@+id/tv_classify_event_address"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="center_vertical"
@@ -99,7 +95,6 @@
             android:layout_below="@+id/iv_classify_event_item_ic_calendar"
             android:textSize="12sp"
             android:textColor="@color/greyText"
-            android:text="潍坊市读行咖啡 —— 文化路胜利街交叉口东行100米路东"
             android:maxLines="1"
             android:paddingEnd="16dp"/>
 
@@ -115,7 +110,7 @@
             />
 
         <TextView
-            android:id="@+id/tv_classify_event_item_population"
+            android:id="@+id/tv_classify_event_population"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="center_vertical"
@@ -124,7 +119,6 @@
             android:layout_below="@+id/iv_classify_event_item_ic_location"
             android:textSize="12sp"
             android:textColor="@color/greyText"
-            android:text="21 / 30"
             android:maxLength="10"/>
 
         <!--费用-->
@@ -135,21 +129,19 @@
             android:padding="5dp"
             android:layout_marginStart="12dp"
             android:layout_below="@+id/iv_classify_event_item_ic_location"
-            android:layout_toRightOf="@+id/tv_classify_event_item_population"
+            android:layout_toRightOf="@+id/tv_classify_event_population"
             android:src="@drawable/ic_fee_greytext"
             />
 
         <TextView
-            android:id="@+id/tv_classify_event_item_fee"
+            android:id="@+id/tv_classify_event_fee"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:gravity="center_vertical"
             android:layout_toRightOf="@+id/iv_classify_event_item_ic_fee"
-
             android:layout_below="@+id/iv_classify_event_item_ic_location"
             android:textSize="12sp"
             android:textColor="@color/greyText"
-            android:text="30 元/人"
             android:maxLength="14"/>
 
 

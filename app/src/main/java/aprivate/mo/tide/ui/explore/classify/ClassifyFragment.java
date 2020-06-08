@@ -17,6 +17,7 @@ import aprivate.mo.tide.adapter.ClassifyStoreAdapter;
 import aprivate.mo.tide.entity.Classify;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.entity.Store;
+import aprivate.mo.tide.ui.home.event.EventFragment;
 import aprivate.mo.tide.ui.home.store.StoreFragment;
 import privat.mo.tidelib.base.BaseFragment;
 import privat.mo.tidelib.listener.OnItemClickListener;
@@ -132,6 +133,17 @@ public class ClassifyFragment extends BaseFragment<IClassifyFragmentView, Classi
         classifyEventLayoutManager = new LinearLayoutManager(getContext());
         classifyEventLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         classifyEventAdapter = new ClassifyEventAdapter(getContext(), eventList);
+        classifyEventAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(EventFragment.newInstance(eventList.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvEvent.setLayoutManager(classifyEventLayoutManager);
         rvEvent.setAdapter(classifyEventAdapter);
     }

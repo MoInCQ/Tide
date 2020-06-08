@@ -157,6 +157,17 @@ public class HomeFragment extends BaseFragment<IHomeFragmentView, HomeFragmentPr
         homeCityMapLayoutManager = new LinearLayoutManager(getContext());
         homeCityMapLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         homeCityMapAdapter = new HomeCityMapAdapter(getContext(), homeCityMapList);
+        homeCityMapAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(EventFragment.newInstance(homeCityMapList.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvHomeCityMap.setLayoutManager(homeCityMapLayoutManager);
         rvHomeCityMap.setAdapter(homeCityMapAdapter);
     }

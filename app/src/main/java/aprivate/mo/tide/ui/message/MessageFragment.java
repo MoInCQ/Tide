@@ -9,7 +9,9 @@ import java.util.List;
 import aprivate.mo.tide.R;
 import aprivate.mo.tide.entity.Event;
 import aprivate.mo.tide.adapter.MessageNotificationAdapter;
+import aprivate.mo.tide.ui.home.event.EventFragment;
 import privat.mo.tidelib.base.BaseFragment;
+import privat.mo.tidelib.listener.OnItemClickListener;
 
 /**
  * Created by Mo on 2020/1/27
@@ -41,6 +43,17 @@ public class MessageFragment extends BaseFragment<IMessageFragmentView, MessageF
         messageNotificationAdapter = new MessageNotificationAdapter(getContext(), events);
         messageNotificationLayoutManager = new LinearLayoutManager(getContext());
         messageNotificationLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        messageNotificationAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view, RecyclerView.ViewHolder viewHolder) {
+                start(EventFragment.newInstance(events.get(position)));
+            }
+
+            @Override
+            public void onItemLongClickListener(int position, View view, RecyclerView.ViewHolder viewHolder) {
+
+            }
+        });
         rvNotification.setAdapter(messageNotificationAdapter);
         rvNotification.setLayoutManager(messageNotificationLayoutManager);
     }
